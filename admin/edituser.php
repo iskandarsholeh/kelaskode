@@ -37,29 +37,39 @@
             <!-- MAIN CONTENT -->
             <div class="main-content">
                 <div class="container-fluid">
-                    <h3 class="page-title">Price</h3>
+                    <h3 class="page-title">Users</h3>
                     <div class="panel panel-headline demo-icons">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Edit Price</h3>
+                            <h3 class="panel-title">Edit User</h3>
                         </div>
+                        <div class="row">
+                    <?php 
+                    $id = $_GET['id'];
+                                $select = mysqli_query($db_connection, "SELECT * FROM users where id='$id'");
+                                if($select->num_rows>0){
+                                   
+                                while ($row = $select->fetch_array()) {
+                                   
+                                ?>
                         <div class="panel-body">
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" name="jenis" required="required">
+                                <input type="text" class="form-control" name="nama" value='<?php echo $row['name']; ?>' required="required">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control" name="benefit" required="required">
+                                <input type="text" class="form-control" name="benefit" value='<?php echo $row['email']; ?>' required="required">
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="text" class="form-control" name="harg" required="required">
+                                <input type="text" class="form-control" name="harg" value='<?php echo $row['alamat']; ?>' required="required">
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="text" class="form-control" name="harg" required="required">
+                                <input type="text" class="form-control" name="harg" value='<?php echo $row['password']; ?>' required="required">
                             </div>
                         </div>
+                        <?php} } ?>
                     </div>
 
                 </div>
@@ -97,8 +107,7 @@
                                     <label>Password</label>
                                     <input type="password" class="form-control" name="password" required="required">
                                 </div> -->
-                    <div class="row">
-
+                  
                         <form action="#" method="post">
                             <div class="col-md-12">
                                 <center>
@@ -106,23 +115,23 @@
                                 </center>
                                 <div class="form-group">
                                     <label>Nama</label>
-                                    <input type="text" class="form-control" name="jenis" required="required">
+                                    <input type="text" class="form-control" name="jenis" value='<?php echo $row['name']; ?>' required="required">
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" name="benefit" required="required">
+                                    <input type="text" class="form-control" name="benefit" value='<?php echo $row['name']; ?>' required="required">
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat</label>
-                                    <input type="text" class="form-control" name="harg" required="required">
+                                    <input type="text" class="form-control" name="harg" value='<?php echo $row['name']; ?>'  required="required">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="text" class="form-control" name="harg" required="required">
+                                    <input type="text" class="form-control" name="harg" value='<?php echo $row['name']; ?>' required="required">
                                 </div>
                             </div>
                     </div>
-
+<?php }} ?>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class=" btn btn-primary ">Edit</button>

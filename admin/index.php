@@ -42,7 +42,7 @@
                     <div class="panel panel-headline">
                         <div class="panel-heading">
                             <h3 class="panel-title">Weekly Overview</h3>
-                            <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+                            <p class="panel-subtitle">Period: juni 1, 2021 - juni 7, 2021</p>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -50,17 +50,17 @@
                                     <div class="metric">
                                         <span class="icon"><i class="fa fa-user"></i></span>
                                         <p>
-                                            <span class="number">20,000</span>
+                                            <span class="number">2</span>
                                             <span class="title">user</span>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="metric">
-                                        <span class="icon"><i class="fa fa-shopping-bag"></i></span>
+                                        <span class="icon"><i class="fa fa-book"></i></span>
                                         <p>
-                                            <span class="number">203</span>
-                                            <span class="title">Sales</span>
+                                            <span class="number">3</span>
+                                            <span class="title">Kelas</span>
                                         </p>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                     <div class="metric">
                                         <span class="icon"><i class="fa fa-eye"></i></span>
                                         <p>
-                                            <span class="number">274,678</span>
+                                            <span class="number">10</span>
                                             <span class="title">Visits</span>
                                         </p>
                                     </div>

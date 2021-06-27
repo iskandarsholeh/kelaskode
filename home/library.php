@@ -6,7 +6,38 @@ $thisPage = "Library";
     include 'header.php';
     
     ?>
+    <?php 
+                $id3 = $_SESSION['login_id'];
+                   $query = mysqli_query($db_connection, "SELECT * FROM pembayaran where id_user='$id3'");
+                   if ($result = mysqli_fetch_assoc($query)){
+
+                       if ($result['bayar'] !== '1' || $result['bayar'] === NULL) {  
+                        ?>
+                        <div class="main">
+                        <!-- MAIN CONTENT -->
+                        <div class="main-content">
+                            <div class="container-fluid">
+                                <!-- OVERVIEW -->
+                                <div class="panel panel-headline">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">My Library</h3>
+            
+                                    </div>
+                                    <div class="panel-body">
+                                       Silahkan tunggu teracc
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END MAIN CONTENT -->
+                    </div>
+                <?php
+                       }
+                       else { 
+                           ?>
+
         <!-- MAIN -->
+        
         <div class="main">
             <!-- MAIN CONTENT -->
             <div class="main-content">
@@ -15,16 +46,31 @@ $thisPage = "Library";
                     <div class="panel panel-headline">
                         <div class="panel-heading">
                             <h3 class="panel-title">My Library</h3>
-
+                            <?php 
+                         $idg = $_SESSION['login_id'];
+                          $query = mysqli_query($db_connection, "SELECT * FROM users a inner join kelas b ON a.id_kelas=b.id WHERE  a.google_id='$idg'");
+                          if ($result = mysqli_fetch_assoc($query)){
+                          ?>
                         </div>
                         <div class="panel-body">
-                            Maaf anda belum memilih kelas
+                       <center> <img src="../img/kelas/<?php echo $result['foto'] ?>" alt="Girl in a jacket" width="200" height="200"></center>
+                        <p align="justify"> <font size='5'> &emsp; &emsp;  <?php echo $result['caption'] ?> </font> </p>
+                        <center>  <video src="../img/kelas/<?php echo $result['video'] ?>"  controls width='500px' height='320px' ></video> </center>
+                           <a href="../img/kelas/<?php echo $result['pdf1'] ?>" download>PDF1</a>
+                           <a href="../img/kelas/<?php echo $result['pdf2'] ?>" download> &nbsp PDF2</a>
+                           <a href="../img/kelas/<?php echo $result['pdf3'] ?>" download>&nbsp  PDF3</a>
+                           
                         </div>
+                        &nbsp &nbsp &nbsp &nbsp   <a href="quiz.php?id=<?php echo $result['id_quiz']; ?>" class="btn btn-success">Take a quiz</a>
+                        <?php } ?>
+                       
                     </div>
+                    
                 </div>
             </div>
             <!-- END MAIN CONTENT -->
         </div>
+        <?php } }?>
         <!-- END MAIN -->
         <div class="clearfix"></div>
         <footer>
@@ -159,6 +205,6 @@ $thisPage = "Library";
 
         });
     </script>
+    
 </body>
-
 </html>

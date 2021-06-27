@@ -5765,7 +5765,7 @@ var documentElement = document.documentElement;
 			// Support: Android 2.3
 			// Check if div with explicit width and no margin-right incorrectly
 			// gets computed margin-right based on width of container. (#3333)
-			// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
+			// WebKit Bug 13343 - getComputedStyle returns salah value for margin-right
 			// This support function is only executed once so no memoizing is needed.
 			var ret,
 				marginDiv = div.appendChild( document.createElement( "div" ) );

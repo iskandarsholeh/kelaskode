@@ -28,6 +28,7 @@
         <?php 
         $thisPage = "About";
             include 'header.php';
+            $select = mysqli_query($db_connection, "SELECT * FROM aboutus");
             ?>
         <!-- END NAVBAR -->
         <!-- LEFT SIDEBAR -->
@@ -41,11 +42,13 @@
                     <div class="panel panel-headline demo-icons">
                         <div class="panel-heading">
                             <h3 class="panel-title">About Us</h3>
-                            <button type="button" class="lnr lnr-pencil right" data-toggle="modal" data-target="#myModal"></button>
+                            <?Php while ($row = $select->fetch_assoc()) { ?>
+                            <button type="button" class="lnr lnr-pencil right" data-toggle="modal" data-target="#myModal<?php echo $row['id'];?>"></button>
                         </div>
                         <div class="panel-body">
-                            <p class="panel-title">KodeKelas merupakan platform berbasis web yang menawarkan layanan kelas coding bagi programmer pemula yang ingin belajar lebih dalam mengenai coding yang nantinya akan menjadi programmer IT yang handal dan dapat menambah wawasan
-                                seputar IT yang ada di Indonesia ini.</p>
+                            <p class="panel-title"><?php 
+                              echo $row['content']."<br>";
+                         ?></p>
                         </div>
                     </div>
                 </div>
@@ -60,7 +63,8 @@
             </footer>
         </div>
 
-        <div id="myModal" class="modal">
+        <div id="myModal<?php echo $row['id'];?>" class="modal">
+        
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -80,15 +84,23 @@
                                 </div> -->
                         <div class="row">
 
-                            <form action="#" method="post">
+                            <form method="post" action="editus.php">
                                 <div class="col-md-12">
                                     <center>
                                         <h3>About Us</h3>
                                     </center>
                                     <div class="form-group">
-                                        <textarea id="about" name="about" rows="15" cols="85">
-                                           
+                                    <?php
+                                      $id = $row['id']; 
+                                        $query_edit = mysqli_query($db_connection, "SELECT * FROM aboutus WHERE id='$id'");
+                                         while ($row = mysqli_fetch_array($query_edit)) {  
+                                         ?>
+                                         <input type="hidden" id="id" name="id" value="<?php echo $row['id']; ?>">
+                                        <textarea name="content" id="content" rows="15" cols="85">
+                                        
+                                        <?php echo $row['content']; ?>
                                             </textarea>
+                                           <?php } ?> 
                                     </div>
 
                                 </div>
@@ -96,7 +108,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class=" btn btn-primary ">Edit</button>
+                        <button type="submit" class=" btn btn-primary " >Edit</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                         </form>
@@ -104,7 +116,7 @@
 
                 </div>
             </div>
-
+            <?php } ?>
             <!-- END WRAPPER -->
             <!-- Javascript -->
             <script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -114,3 +126,4 @@
 </body>
 
 </html>
+

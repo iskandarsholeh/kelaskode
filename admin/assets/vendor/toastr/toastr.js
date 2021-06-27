@@ -11,10 +11,10 @@
  * Project: https://github.com/CodeSeven/toastr
  */
 /* global define */
-(function (define) {
-    define(['jquery'], function ($) {
-        return (function () {
-            var $container;
+(function(define) {
+    define(['jquery'], function($) {
+        return (function() {
+            var $db_connectiontainer;
             var listener;
             var toastId = 0;
             var toastType = {
@@ -55,14 +55,14 @@
 
             function getContainer(options, create) {
                 if (!options) { options = getOptions(); }
-                $container = $('#' + options.containerId);
-                if ($container.length) {
-                    return $container;
+                $db_connectiontainer = $('#' + options.containerId);
+                if ($db_connectiontainer.length) {
+                    return $db_connectiontainer;
                 }
                 if (create) {
-                    $container = createContainer(options);
+                    $db_connectiontainer = createContainer(options);
                 }
-                return $container;
+                return $db_connectiontainer;
             }
 
             function info(message, title, optionsOverride) {
@@ -101,7 +101,7 @@
 
             function clear($toastElement, clearOptions) {
                 var options = getOptions();
-                if (!$container) { getContainer(options); }
+                if (!$db_connectiontainer) { getContainer(options); }
                 if (!clearToast($toastElement, options, clearOptions)) {
                     clearContainer(options);
                 }
@@ -109,32 +109,32 @@
 
             function remove($toastElement) {
                 var options = getOptions();
-                if (!$container) { getContainer(options); }
+                if (!$db_connectiontainer) { getContainer(options); }
                 if ($toastElement && $(':focus', $toastElement).length === 0) {
                     removeToast($toastElement);
                     return;
                 }
-                if ($container.children().length) {
-                    $container.remove();
+                if ($db_connectiontainer.children().length) {
+                    $db_connectiontainer.remove();
                 }
             }
 
             // internal functions
 
-            function clearContainer (options) {
-                var toastsToClear = $container.children();
+            function clearContainer(options) {
+                var toastsToClear = $db_connectiontainer.children();
                 for (var i = toastsToClear.length - 1; i >= 0; i--) {
                     clearToast($(toastsToClear[i]), options);
                 }
             }
 
-            function clearToast ($toastElement, options, clearOptions) {
+            function clearToast($toastElement, options, clearOptions) {
                 var force = clearOptions && clearOptions.force ? clearOptions.force : false;
                 if ($toastElement && (force || $(':focus', $toastElement).length === 0)) {
                     $toastElement[options.hideMethod]({
                         duration: options.hideDuration,
                         easing: options.hideEasing,
-                        complete: function () { removeToast($toastElement); }
+                        complete: function() { removeToast($toastElement); }
                     });
                     return true;
                 }
@@ -142,12 +142,12 @@
             }
 
             function createContainer(options) {
-                $container = $('<div/>')
+                $db_connectiontainer = $('<div/>')
                     .attr('id', options.containerId)
                     .addClass(options.positionClass);
 
-                $container.appendTo($(options.target));
-                return $container;
+                $db_connectiontainer.appendTo($(options.target));
+                return $db_connectiontainer;
             }
 
             function getDefaults() {
@@ -203,7 +203,7 @@
                 var options = getOptions();
                 var iconClass = map.iconClass || options.iconClass;
 
-                if (typeof (map.optionsOverride) !== 'undefined') {
+                if (typeof(map.optionsOverride) !== 'undefined') {
                     options = $.extend(options, map.optionsOverride);
                     iconClass = map.optionsOverride.iconClass || iconClass;
                 }
@@ -212,7 +212,7 @@
 
                 toastId++;
 
-                $container = getContainer(options, true);
+                $db_connectiontainer = getContainer(options, true);
 
                 var intervalId = null;
                 var $toastElement = $('<div/>');
@@ -276,7 +276,7 @@
                     switch (map.iconClass) {
                         case 'toast-success':
                         case 'toast-info':
-                            ariaValue =  'polite';
+                            ariaValue = 'polite';
                             break;
                         default:
                             ariaValue = 'assertive';
@@ -294,7 +294,7 @@
                     }
 
                     if (options.closeButton && $closeElement) {
-                        $closeElement.click(function (event) {
+                        $closeElement.click(function(event) {
                             if (event.stopPropagation) {
                                 event.stopPropagation();
                             } else if (event.cancelBubble !== undefined && event.cancelBubble !== true) {
@@ -310,7 +310,7 @@
                     }
 
                     if (options.onclick) {
-                        $toastElement.click(function (event) {
+                        $toastElement.click(function(event) {
                             options.onclick(event);
                             hideToast();
                         });
@@ -320,9 +320,7 @@
                 function displayToast() {
                     $toastElement.hide();
 
-                    $toastElement[options.showMethod](
-                        {duration: options.showDuration, easing: options.showEasing, complete: options.onShown}
-                    );
+                    $toastElement[options.showMethod]({ duration: options.showDuration, easing: options.showEasing, complete: options.onShown });
 
                     if (options.timeOut > 0) {
                         intervalId = setTimeout(hideToast, options.timeOut);
@@ -342,9 +340,9 @@
 
                 function setSequence() {
                     if (options.newestOnTop) {
-                        $container.prepend($toastElement);
+                        $db_connectiontainer.prepend($toastElement);
                     } else {
-                        $container.append($toastElement);
+                        $db_connectiontainer.append($toastElement);
                     }
                 }
 
@@ -413,7 +411,7 @@
                     return $toastElement[method]({
                         duration: duration,
                         easing: easing,
-                        complete: function () {
+                        complete: function() {
                             removeToast($toastElement);
                             clearTimeout(intervalId);
                             if (options.onHidden && response.state !== 'hidden') {
@@ -437,9 +435,7 @@
                 function stickAround() {
                     clearTimeout(intervalId);
                     progressBar.hideEta = 0;
-                    $toastElement.stop(true, true)[options.showMethod](
-                        {duration: options.showDuration, easing: options.showEasing}
-                    );
+                    $toastElement.stop(true, true)[options.showMethod]({ duration: options.showDuration, easing: options.showEasing });
                 }
 
                 function updateProgress() {
@@ -453,21 +449,21 @@
             }
 
             function removeToast($toastElement) {
-                if (!$container) { $container = getContainer(); }
+                if (!$db_connectiontainer) { $db_connectiontainer = getContainer(); }
                 if ($toastElement.is(':visible')) {
                     return;
                 }
                 $toastElement.remove();
                 $toastElement = null;
-                if ($container.children().length === 0) {
-                    $container.remove();
+                if ($db_connectiontainer.children().length === 0) {
+                    $db_connectiontainer.remove();
                     previousToast = undefined;
                 }
             }
 
         })();
     });
-}(typeof define === 'function' && define.amd ? define : function (deps, factory) {
+}(typeof define === 'function' && define.amd ? define : function(deps, factory) {
     if (typeof module !== 'undefined' && module.exports) { //Node
         module.exports = factory(require('jquery'));
     } else {

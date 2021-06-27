@@ -1,3 +1,25 @@
+
+<?php
+require '../db/db_connection.php';
+
+if(!isset($_SESSION['login_id'])){
+    header('Location: ../index.php');
+    exit;
+}
+
+$id = $_SESSION['login_id'];
+
+$get_user = mysqli_query($db_connection, "SELECT * FROM users WHERE google_id='$id'");
+
+if(mysqli_num_rows($get_user) > 0){
+    $user = mysqli_fetch_assoc($get_user);
+}
+else{
+    header('Location: logout.php');
+    exit;
+}
+?>
+
 <head>
     <title>Dashboard | User</title>
     <meta charset="utf-8">
@@ -34,7 +56,7 @@
                 <div id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>user</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $user['profile_image']; ?>" class="img-circle" alt="Avatar"> <span><?php echo $user['name'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li><a href="page-profile.php"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                                 <li><a href="changepass.php"><i class="lnr lnr-pencil"></i> <span>Change Password</span></a></li>

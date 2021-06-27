@@ -43,6 +43,7 @@
                             <h3 class="panel-title">User</h3>
                             <button type="button" class="lnr lnr-upload right" data-toggle="modal" data-target="#myModal"></button>
                         </div>
+                       
                         <div class="panel-body">
                             <table class="table table-striped">
                                 <thead>
@@ -54,30 +55,28 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+                               
+                       
                                 <tbody>
+                                <?php 
+                                $select = mysqli_query($db_connection, "SELECT * FROM users where id_level ='2'");
+                                if($select->num_rows>0){
+                                    $no=1;
+                                while ($row = $select->fetch_array()) {
+                                   
+                                ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>A</td>
-                                        <td>A@email.com</td>
-                                        <td>Jl. A</td>
-                                        <td><a href="edituser.php" class="btn btn-warning">Edit </a> <a href="#" class="btn btn-danger">Delete</a></td>
+                                        <td><?php echo $no++?></td>
+                                        <td><?php echo $row['name']?></td>
+                                        <td><?php echo $row['email']?></td>
+                                        <td><?php echo $row['alamat']?></td>
+                                        <td><a href="edituser.php?id=<?php echo $row['id']; ?>" class="btn btn-warning">Edit </a> <a href="#" class="btn btn-danger">Delete</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>B</td>
-                                        <td>B@email.com</td>
-                                        <td>Jl. B</td>
-                                        <td><a href="edituser.php" class="btn btn-warning">Edit </a> <a href="# " class="btn btn-danger">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Jane</td>
-                                        <td>jane@gmail</td>
-                                        <td>Kl. Jane</td>
-                                        <td><a href="edituser.php" class="btn btn-warning">Edit </a> <a href="#" class="btn btn-danger">Delete</a></td>
-                                    </tr>
+                                    <?php }} ?>
                                 </tbody>
+                               
                             </table>
+                            
                         </div>
                     </div>
                 </div>

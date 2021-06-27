@@ -37,10 +37,10 @@
             <!-- MAIN CONTENT -->
             <div class="main-content">
                 <div class="container-fluid">
-                    <h3 class="page-title">User</h3>
+                    <h3 class="page-title">Kelas</h3>
                     <div class="panel panel-headline demo-icons">
                         <div class="panel-heading">
-                            <h3 class="panel-title">User</h3>
+                            <h3 class="panel-title">Kelas</h3>
                             <button type="button" class="lnr lnr-upload right" data-toggle="modal" data-target="#myModal"></button>
                         </div>
                         <div class="panel-body">
@@ -50,32 +50,28 @@
                                         <th>#</th>
                                         <th>Nama Kelas</th>
                                         <th>Video</th>
+                                        <th>PDF1</th>
                                         <th>Materi</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php 
+                                $select = mysqli_query($db_connection, "SELECT * FROM kelas ");
+                                if($select->num_rows>0){
+                                    $no=1;
+                                while ($row = $select->fetch_array()) {
+                                   
+                                ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Full Stack</td>
-                                        <td>....</td>
-                                        <td>...</td>
-                                        <td><a href="editkelas.php" class="btn btn-warning">Edit </a> <a href="#" class="btn btn-danger">Delete</a></td>
+                                        <td><?php echo $no++?></td>
+                                        <td><?php echo $row['nama']?></td>
+                                        <td><?php echo $row['video']?></td>
+                                        <td><?php echo $row['pdf1']?></td>
+                                        <td><?php echo $row['caption']?></td>
+                                        <td><a href="deletekelas.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Php Dasar</td>
-                                        <td>.....</td>
-                                        <td>....</td>
-                                        <td><a href="editkelas.php" class="btn btn-warning">Edit </a> <a href="#" class="btn btn-danger">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Frontend</td>
-                                        <td>....</td>
-                                        <td>...</td>
-                                        <td><a href="editkelas.php" class="btn btn-warning">Edit </a> <a href="#" class="btn btn-danger">Delete</a></td>
-                                    </tr>
+                                    <?php }} ?>
                                 </tbody>
                             </table>
                         </div>
@@ -87,7 +83,7 @@
             <div class="clearfix"></div>
             <footer>
                 <div class="container-fluid">
-                    <p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
+                    <p class="copyright">&copy; 2021 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>
@@ -112,24 +108,55 @@
                                 </div> -->
                         <div class="row">
 
-                            <form action="#" method="post">
+                        <form action="upload.php" method="post" enctype="multipart/form-data" >
                                 <div class="col-md-12">
                                     <center>
-                                        <h3>Tambah User</h3>
+                                        <h3>Tambah Kelas</h3>
                                     </center>
                                     <div class="form-group">
                                         <label>Nama Kelas</label>
-                                        <input type="text" class="form-control" name="jenis" required="required">
+                                        <input type="text" class="form-control" name="nama" required="required">
                                     </div>
                                     <div class="form-group">
                                         <label>Video</label>
-                                        <input name="userfile" type="file" accept="application/pdf, application/vnd.ms-excel" />
+                                        <input type="file" class="form-control" name="video">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>PDF1</label>
+                                        <input type="file" class="form-control" name="pdf1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>PDF2</label>
+                                        <input type="file" class="form-control" name="pdf2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>PDF3</label>
+                                        <input type="file" class="form-control" name="pdf3">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Foto</label>
+                                        <input type="file" class="form-control" name="foto"  required="required">
                                     </div>
                                     <div class="form-group">
                                         <label>Materi</label>
-                                        <input name="userfile" type="file" accept="application/pdf, application/vnd.ms-excel" />
+                                        <input type="text" class="form-control" name="materi" required="required">
                                     </div>
-
+                                    <div class="form-group">
+                                        <label>Harga</label>
+                                        <input type="text" class="form-control" name="harga" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                    <select name="quiz" class="form-control selectpicker" data-live-search="true">
+                                    <option class="form-control">---Pilih Quiz---</option>
+                                    <?php   
+                                   $select = mysqli_query($db_connection, "SELECT * FROM quiz ");
+                                   while ($row = $select->fetch_array()) {
+                                   ?>
+                                    <option value="<?= $row['idq']; ?>">
+                                        <?= $row['nama_quiz']; ?></option>
+                                    <?php } ?>
+                                    </div>
+                                    </select>
                                 </div>
                         </div>
 

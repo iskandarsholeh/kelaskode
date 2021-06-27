@@ -18,19 +18,26 @@ $thisPage = "Browser";
                 </div>
                 <div class="panel-body">
                     <!-- Main -->
-
+          
                     <div class="row">
+                    <?php 
+                        $select = mysqli_query($db_connection, "SELECT * FROM kelas");
+                        if($select->num_rows>0){
+                            $no=1;
+                        while ($row = $select->fetch_array()) {
+                           
+                        ?>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                             <div class="card" style="width: 20rem;">
-                                <img class="card-img-top" src="https://images-platform.99static.com/FWvZUrBBgg_FQbdXlquX0lf2KSI=/500x500/top/smart/99designs-contests-attachments/28/28801/attachment_28801044" alt="Card image cap">
+                                <img class="card-img-top" src="../img/kelas/<?php echo $row['foto']?>" alt="Card image cap">
                                 <div class="card-block">
-                                    <h4 class="card-title">Full Stack</h4>
-                                    <p class="card-text">Price: $100</p>
-                                    <a href="#" data-name="Orange" data-price="0.5" class="add-to-cart btn btn-primary">Add to cart</a>
+                                    <h4 class="card-title"><?php echo $row['nama']?></h4>
+                                    <p class="card-text">Harga <?php echo $row['harga']?></p>
+                                    <a href="bayar.php?id=<?php echo $row['id']; ?>" data-name="Orange" data-price="0.5" class="add-to-cart btn btn-primary">Pilih</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                             <div class="card" style="width: 20rem;">
                                 <img class="card-img-top" src="https://www.php.net/images/logos/new-php-logo.svg" alt="Card image cap">
                                 <div class="card-block">
@@ -49,8 +56,11 @@ $thisPage = "Browser";
                                     <a href="#" data-name="Lemon" data-price="5" class="add-to-cart btn btn-primary">Add to cart</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <?php }} ?>
                     </div>
+
+                   
                     <style>
                         .show-cart li {
                             display: flex;
@@ -68,30 +78,7 @@ $thisPage = "Browser";
                     </style>
 
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="show-cart table">
-
-                                    </table>
-                                    <div>Total price: $<span class="total-cart"></span></div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Order now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+            
                 </div>
 
                 <!-- END OVERVIEW -->

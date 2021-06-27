@@ -3,9 +3,19 @@
 
 <?php 
 $thisPage = "Page-Profile";
-    include 'header.php';
+include 'header.php';
     
     ?>
+
+<style>
+.profile-header .profile-main {
+    position: relative;
+    padding: 20px;
+    background-image: url("gambar/<?php echo $user['latar_image']; ?>");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
 <!-- MAIN -->
 <div class="main">
     <!-- MAIN CONTENT -->
@@ -16,12 +26,58 @@ $thisPage = "Page-Profile";
                     <!-- LEFT COLUMN -->
                     <div class="profile-left">
                         <!-- PROFILE HEADER -->
+
                         <div class="profile-header">
                             <div class="overlay"></div>
                             <div class="profile-main">
-                                <img src="assets/img/user-medium.png" class="img-circle" alt="Avatar">
-                                <h3 class="name">Samuel Gold</h3>
+                                <style>
+                                .custom-file-input {
+                                    color: transparent;
+                                }
+
+                                .custom-file-input::-webkit-file-upload-button {
+                                    visibility: hidden;
+                                }
+
+                                .custom-file-input::before {
+                                    content: 'Edit Foto Background';
+                                    color: black;
+                                    display: inline-block;
+                                    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+                                    border: 1px solid #999;
+                                    border-radius: 3px;
+                                    padding: 5px 8px;
+                                    outline: none;
+                                    white-space: nowrap;
+                                    -webkit-user-select: none;
+                                    cursor: pointer;
+                                    text-shadow: 1px 1px #fff;
+                                    font-weight: 700;
+                                    font-size: 10pt;
+                                }
+
+                                .custom-file-input:hover::before {
+                                    border-color: black;
+                                }
+
+                                .custom-file-input:active {
+                                    outline: 0;
+                                }
+
+                                .custom-file-input:active::before {
+                                    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+                                }
+                                </style>
+
+                                <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+                                <img src="<?php echo $user['profile_image']; ?>" class="img-circle" alt="Avatar">
+                                <h3 class="name"><?php echo $user['name'];?></h3>
                                 <span class="online-status status-available">Available</span>
+
+                                <form id="form" action="upbackimage.php" method="POST" enctype="multipart/form-data">
+                                    <input type="file" id="file" class="custom-file-input" name="foto">
+                                </form>
                             </div>
                             <div class="profile-stat">
                                 <div class="row">
@@ -43,10 +99,11 @@ $thisPage = "Page-Profile";
                             <div class="profile-info">
                                 <h4 class="heading">Basic Info</h4>
                                 <ul class="list-unstyled list-justify">
-                                    <li>Birthdate <span>24 Aug, 2016</span></li>
-                                    <li>Mobile <span>(124) 823409234</span></li>
-                                    <li>Email <span>samuel@mydomain.com</span></li>
-                                    <li>Website <span><a href="https://www.themeineed.com">www.themeineed.com</a></span>
+                                    <li>Birthdate <span><?php echo $user['umur'];?></span></li>
+                                    <li>Mobile <span><?php echo $user['no_tlp'];?></span></li>
+                                    <li>Email <span><?php echo $user['email'];?></span></li>
+                                    <li>Pekerjaan <span><?php echo $user['pekerjaan'];?></span>
+                                    <li>Alamat <span><?php echo $user['alamat'];?></span>
                                     </li>
                                 </ul>
                             </div>
@@ -61,7 +118,7 @@ $thisPage = "Page-Profile";
                             </div>
                             <div class="profile-info">
                                 <h4 class="heading">About</h4>
-                                <p>Interactively fashion excellent information after distinctive outsourcing.</p>
+                                <p><?php echo $user['about'];?></p>
                             </div>
                             <div class="text-center"><a href="#" class="btn btn-primary">Edit Profile</a></div>
                         </div>
@@ -70,7 +127,7 @@ $thisPage = "Page-Profile";
                     <!-- END LEFT COLUMN -->
                     <!-- RIGHT COLUMN -->
                     <div class="profile-right">
-                        <h4 class="heading">Samuel's Awards</h4>
+                        <h4 class="heading"><?php echo $user['name'];?> Awards</h4>
                         <!-- AWARDS -->
                         <div class="awards">
                             <div class="row">
@@ -278,6 +335,11 @@ $thisPage = "Page-Profile";
 <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="assets/scripts/klorofil-common.js"></script>
+<script>
+document.getElementById("file").onchange = function() {
+    document.getElementById("form").submit();
+}
+</script>
 </body>
 
 </html>
