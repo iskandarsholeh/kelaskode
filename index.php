@@ -1,11 +1,11 @@
 <?php
-require 'db/db_connection.php';
+require 'includes/db_connection.php';
 
 // if(isset($_SESSION['login_id'])){
 //     header('Location: home/index.php');
 //     exit;
 // }
-require '../vendor/autoload.php';
+require 'includes/vendor/autoload.php';
 // Creating new google client instance
 $client = new Google_Client();
 
@@ -14,7 +14,7 @@ $client->setClientId('550724294949-07kqfqa8l4timk4u5j006lmb1ct101bq.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('4tIDXyMiQgoRgCNFFreNm28B');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/kelas-kode22/index.php');
+$client->setRedirectUri('https://kelaskode.herokuapp.com/index.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -213,7 +213,7 @@ else:
                         <form action="login/loginproses.php" method="post">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="email" class="form-control"  name="username" id="mail"
+                                    <input type="email" class="form-control" name="username" id="mail"
                                         placeholder="Your Mail" required>
                                 </div>
                             </div>
