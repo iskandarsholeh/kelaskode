@@ -10,5 +10,5 @@ This project is associated with the following course
 </div>
 
 # [Udemy](http://bit.ly/2oOkrpT)
-# [Website](http://bit.ly/2nEh7NT)
+# [Website](http://kelaskode.herokuapp.com/)
 # [KelasKode](http://kelaskode.herokuapp.com/)
