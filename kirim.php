@@ -12,7 +12,7 @@
 	if(mail($admin, $judul, $pesan, $pengirim)){
 		echo 'SUCCESS: Pesan anda berhasil di kirim. <a href="index.php">Kembali</a>';
 	}else{
-		echo 'ERROR: Pesan anda gagal di kirim silahkan coba lagi. <a href="index.php">Kembali</a>';
+		echo 'ERROR: Pesan anda gagal di kirim :( silahkan coba lagi. <a href="index.php">Kembali</a>';
 	}
 
 
