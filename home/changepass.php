@@ -27,7 +27,7 @@ $thisPage = "";
                                 <input type="text" class="form-control" name="epassword" required="required">
                             </div>
                             <div class="form-group">
-                                <label>Ulangi Password Baru</label>
+                                <label>Konfirmasi Password Baru</label>
                                 <input type="text" class="form-control" name="rpassword" required="required">
                             </div>
                         </div>
