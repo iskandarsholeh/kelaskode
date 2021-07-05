@@ -8,7 +8,7 @@
                                 if ($result = mysqli_fetch_assoc($query)){
 
                                     if ($result['id_kelas'] !== NULL) {  
-                                        echo"<script>alert('Anda sudah memesan kelas, silahkan tunggu di acc');
+                                        echo"<script>alert('Anda sudah memesan kelas! Mohon ditunggu :)');
                                         document.location.href='library.php'</script>\n"; 
                                     }
                                     else { 
